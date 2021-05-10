@@ -1,5 +1,7 @@
 package com.saihtoo.tourismapp;
 
+import java.util.List;
+
 public class Data
 {
     int[] imageList = {R.drawable.gor, R.drawable.opera, R.drawable.paradise, R.drawable.pinklake};
@@ -34,6 +36,8 @@ public class Data
 
     public int getLength()
     {
-        return imageList.length;
+        return textList.length;
     }
+
+
 }

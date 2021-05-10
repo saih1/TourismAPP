@@ -10,11 +10,6 @@ public class Destinations {
         this.description = description;
     }
 
-    public int getId()
-    {
-        return id;
-    }
-
     public int getImage()
     {
         return image;

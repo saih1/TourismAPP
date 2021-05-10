@@ -13,11 +13,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BotRecyclerViewAdapter.OnRowClickListener {
     LinearLayout linearLayout;
-    RecyclerView topRecyclerView, botRecyclerView;
+    RecyclerView topRecyclerView;
+    RecyclerView botRecyclerView;
     TopRecyclerViewAdapter topViewAdapter;
     BotRecyclerViewAdapter botViewAdapter;
     List<Destinations> destinationsList= new ArrayList<>();
@@ -28,35 +30,26 @@ public class MainActivity extends AppCompatActivity implements BotRecyclerViewAd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         linearLayout = findViewById(R.id.linearLayout);
-
-        //TOP RECYCLER VIEW
         topRecyclerView = findViewById(R.id.topRecycler);
-        topViewAdapter = new TopRecyclerViewAdapter(destinationsList, MainActivity.this);
-        topRecyclerView.setAdapter(topViewAdapter);
-        RecyclerView.LayoutManager topManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
-                false);
-        topRecyclerView.setLayoutManager(topManager);
+        botRecyclerView = findViewById(R.id.botRecycler);
 
+        //New instances of Destinations class
+        //Add data to destinationList
         for (int i = 0; i < myData.getLength(); i++) {
-            Destinations d = new Destinations(i, myData.getImage(i),
-                    myData.getTitle(i), myData.getText(i));
+            Destinations d = new Destinations(i, myData.getImage(i), myData.getTitle(i), myData.getText(i));
             destinationsList.add(d);
         }
 
-        //BOT RECYCLER VIEW
-        botRecyclerView = findViewById(R.id.botRecycler);
-        botViewAdapter = new BotRecyclerViewAdapter(destinationsList, MainActivity.this,
-                (BotRecyclerViewAdapter.OnRowClickListener) this);
+        //Setup Recycler Views
+        botViewAdapter = new BotRecyclerViewAdapter(destinationsList, this, this);
         botRecyclerView.setAdapter(botViewAdapter);
-        RecyclerView.LayoutManager botManager = new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager botManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         botRecyclerView.setLayoutManager(botManager);
 
-        for (int i = 0; i < myData.getLength(); i++) {
-            Destinations d = new Destinations(i, myData.getImage(i),
-                    myData.getTitle(i), myData.getText(i));
-            destinationsList.add(d);
-        }
+        topViewAdapter = new TopRecyclerViewAdapter(destinationsList, this);
+        topRecyclerView.setAdapter(topViewAdapter);
+        RecyclerView.LayoutManager topManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        topRecyclerView.setLayoutManager(topManager);
     }
 
     @Override
