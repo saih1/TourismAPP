@@ -1,6 +1,5 @@
 # TourismAPP
 
-SIT305 – Mobile application Development Tourism APP
+SIT305 – Tourism APP
 
-
-This assessment task intends to provide you with experience in using recycler view and fragments in Android mobile app programming. You are given the requirements of a tourism mobile app for SIT305.
+This Android app demonstriates the use of recycler views and fragments. 
